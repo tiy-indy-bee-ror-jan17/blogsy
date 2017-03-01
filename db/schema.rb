@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228144801) do
+ActiveRecord::Schema.define(version: 20170301161247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20170228144801) do
     t.text     "body"
     t.string   "summary"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "comments_count"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "comments_count", default: 0
+    t.integer  "votes",          default: 1
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
@@ -40,9 +41,11 @@ ActiveRecord::Schema.define(version: 20170228144801) do
     t.string   "username"
     t.string   "email"
     t.text     "bio"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "posts_count"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "posts_count",     default: 0
+    t.string   "password_digest"
+    t.string   "auth_token"
   end
 
   add_foreign_key "comments", "posts"
