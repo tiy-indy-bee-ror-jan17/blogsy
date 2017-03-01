@@ -13,7 +13,6 @@ class CommentTest < ActiveSupport::TestCase
 
   test "Test presences" do
     comment = build(:comment)
-    puts comment.inspect
     comment.user = nil
     refute comment.save
     comment.user = create(:user)

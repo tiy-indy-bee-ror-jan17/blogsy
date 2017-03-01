@@ -11,6 +11,16 @@ class UserTest < ActiveSupport::TestCase
     should validate_presence_of :username
   end
 
+  context "Authentication" do
+    should have_secure_password
+  end
+
+  def test_generates_a_token
+    user = build(:user)
+    assert user.save
+    assert user.auth_token
+  end
+
   # def setup
   #   @user = FactoryGirl.build(:user)
   # end
